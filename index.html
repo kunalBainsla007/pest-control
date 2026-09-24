@@ -32,17 +32,24 @@
   <!-- TOP ANNOUNCEMENT & EMERGENCY DISPATCH BAR -->
   <div class="top-bar">
     <div class="container top-bar-container">
-      <div class="top-bar-left">
+      <div class="top-bar-left hide-tablet">
         <span class="badge-pulse"><i class="fa-solid fa-bolt"></i> 24/7 Rapid Response</span>
         <span class="top-bar-divider">|</span>
-        <span><i class="fa-solid fa-shield-halved text-accent"></i> 100% Pet-Safe & Certified Chemicals</span>
+        <span><i class="fa-solid fa-shield-halved text-accent"></i> 100% Govt-Approved & Pet-Safe Chemicals</span>
       </div>
-      <div class="top-bar-right">
+      <div class="top-bar-right hide-tablet">
         <a href="https://wa.me/919887147882?text=Hi%20Veer%20Pest%20Control,%20I%20need%20pest%20control%20service." target="_blank" rel="noopener" class="top-contact-link top-whatsapp-link">
           <i class="fa-brands fa-whatsapp text-whatsapp"></i> WhatsApp: <strong>+91 98871 47882</strong>
         </a>
-        <span class="top-bar-divider hide-mobile">|</span>
-        <a href="tel:+919887147882" class="top-contact-link hide-mobile">
+        <span class="top-bar-divider">|</span>
+        <a href="tel:+919887147882" class="top-contact-link">
+          <i class="fa-solid fa-phone-volume"></i> Call: <strong>+91 98871 47882</strong>
+        </a>
+      </div>
+      <!-- Clean Single-Line Top Bar for Mobile/Tablet -->
+      <div class="top-bar-mobile show-tablet">
+        <span class="top-mobile-badge"><i class="fa-solid fa-bolt"></i> 24/7 Emergency</span>
+        <a href="tel:+919887147882" class="top-mobile-call">
           <i class="fa-solid fa-phone-volume"></i> Call: <strong>+91 98871 47882</strong>
         </a>
       </div>
@@ -52,7 +59,7 @@
   <!-- STICKY NAVBAR -->
   <header class="main-header" id="navbar">
     <div class="container header-container">
-      <!-- Brand Logo with User's Official Image -->
+      <!-- Brand Logo with Official Image -->
       <a href="#home" class="brand-logo" aria-label="Veer Pest Control Services Home">
         <img src="images/logo.jpg" alt="Veer Pest Control Services Logo" class="brand-logo-img">
         <div class="logo-text-group">
@@ -66,7 +73,7 @@
         <ul class="nav-list">
           <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
           <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
-          <li class="nav-item"><a href="#calculator" class="nav-link">Cost Calculator</a></li>
+          <li class="nav-item"><a href="#calculator" class="nav-link">Calculator</a></li>
           <li class="nav-item"><a href="#why-us" class="nav-link">Why Choose Us</a></li>
           <li class="nav-item"><a href="#process" class="nav-link">How It Works</a></li>
           <li class="nav-item"><a href="#pricing" class="nav-link">Pricing</a></li>
@@ -77,17 +84,21 @@
 
       <!-- Header CTAs -->
       <div class="header-actions">
-        <a href="https://wa.me/919887147882?text=Hi%20Veer%20Pest%20Control,%20I%20would%20like%20to%20get%20a%20free%20quote." target="_blank" rel="noopener" class="btn btn-whatsapp-header hide-tablet">
+        <a href="https://wa.me/919887147882?text=Hi%20Veer%20Pest%20Control,%20I%20would%20like%20to%20get%20a%20free%20quote." target="_blank" rel="noopener" class="btn btn-whatsapp-header hide-laptop" aria-label="Chat on WhatsApp">
           <i class="fa-brands fa-whatsapp"></i>
           <span>WhatsApp Chat</span>
         </a>
-        <a href="tel:+919887147882" class="btn btn-outline btn-call hide-tablet">
+        <a href="tel:+919887147882" class="btn btn-outline btn-call hide-laptop" aria-label="Call Helpline">
           <i class="fa-solid fa-phone"></i>
           <span>9887147882</span>
         </a>
-        <a href="#contact" class="btn btn-primary btn-book">
+        <a href="#contact" class="btn btn-primary btn-book hide-mobile">
           <i class="fa-solid fa-calendar-check"></i>
           <span>Book Inspection</span>
+        </a>
+        <!-- Mobile Quick WhatsApp Button -->
+        <a href="https://wa.me/919887147882?text=Hi%20Veer%20Pest%20Control,%20I%20need%20assistance." target="_blank" rel="noopener" class="mobile-header-wa show-mobile" aria-label="WhatsApp Quick Chat">
+          <i class="fa-brands fa-whatsapp"></i>
         </a>
         <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation Menu">
           <span class="bar"></span>
