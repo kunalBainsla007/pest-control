@@ -980,6 +980,7 @@ ul {
 .hero-cta-group {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 14px;
   margin-bottom: 36px;
   flex-wrap: wrap;
@@ -1808,144 +1809,7 @@ ul {
 }
 
 /* --------------------------------------------------------------------------
-   15. PRICING & SERVICE PACKAGES
-   -------------------------------------------------------------------------- */
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  align-items: stretch;
-}
-
-.pricing-card {
-  background: #ffffff;
-  border-radius: var(--radius-xl);
-  border: 1px solid var(--border-color);
-  padding: 40px 32px;
-  box-shadow: var(--shadow-sm);
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  transition: all var(--transition-normal);
-}
-
-.pricing-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
-}
-
-.pricing-card.popular-plan {
-  border: 2px solid var(--accent);
-  box-shadow: var(--shadow-lg);
-  transform: scale(1.03);
-  z-index: 2;
-}
-
-.pricing-card.popular-plan:hover {
-  transform: scale(1.03) translateY(-6px);
-}
-
-.popular-ribbon {
-  position: absolute;
-  top: -14px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
-  color: #ffffff;
-  font-family: var(--font-heading);
-  font-size: 0.78rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  padding: 6px 18px;
-  border-radius: var(--radius-full);
-  box-shadow: 0 4px 12px rgba(255, 122, 0, 0.4);
-}
-
-.pricing-header {
-  text-align: center;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--border-color);
-  margin-bottom: 28px;
-}
-
-.pricing-plan-name {
-  font-family: var(--font-heading);
-  font-size: 1.45rem;
-  font-weight: 800;
-  color: var(--primary-dark);
-  margin-bottom: 6px;
-}
-
-.pricing-plan-sub {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  margin-bottom: 16px;
-}
-
-.pricing-amount {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: 2px;
-}
-
-.pricing-amount .currency {
-  font-family: var(--font-heading);
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: var(--primary-dark);
-}
-
-.pricing-amount .price {
-  font-family: var(--font-heading);
-  font-size: 3.2rem;
-  font-weight: 800;
-  color: var(--primary-dark);
-  line-height: 1;
-}
-
-.pricing-amount .period {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--text-muted);
-}
-
-.pricing-features {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-bottom: 36px;
-  flex: 1;
-}
-
-.pricing-features li {
-  font-size: 0.92rem;
-  color: var(--text-main);
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  line-height: 1.45;
-}
-
-.pricing-features li i {
-  font-size: 0.95rem;
-  margin-top: 3px;
-  flex-shrink: 0;
-}
-
-.pricing-features li.disabled {
-  color: var(--text-light);
-  text-decoration: line-through;
-  opacity: 0.6;
-}
-
-.pricing-features li.disabled i {
-  color: #94a3b8;
-}
-
-/* --------------------------------------------------------------------------
-   16. ABOUT SECTION
+   15. ABOUT SECTION
    -------------------------------------------------------------------------- */
 .about-grid {
   display: grid;
@@ -2333,6 +2197,10 @@ ul {
 /* --------------------------------------------------------------------------
    19. CONTACT & BOOKING SECTION
    -------------------------------------------------------------------------- */
+.contact-section {
+  padding-top: clamp(64px, 9vw, 120px);
+}
+
 .contact-grid {
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
@@ -2461,6 +2329,15 @@ ul {
   overflow: hidden;
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow-sm);
+  width: 100%;
+}
+
+.map-container iframe {
+  display: block;
+  width: 100%;
+  height: 320px;
+  min-height: 300px;
+  border: 0;
 }
 
 .map-placeholder {
@@ -3302,20 +3179,6 @@ ul {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .pricing-grid {
-    grid-template-columns: 1fr;
-    max-width: 480px;
-    margin: 0 auto;
-  }
-
-  .pricing-card.popular-plan {
-    transform: none;
-  }
-
-  .pricing-card.popular-plan:hover {
-    transform: translateY(-6px);
-  }
-
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 36px;
@@ -3489,19 +3352,6 @@ ul {
 
   .process-card {
     padding: 24px 18px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .pricing-grid {
-    grid-template-columns: 1fr !important;
-    max-width: 100%;
-    width: 100%;
-    gap: 22px;
-  }
-
-  .pricing-card {
-    padding: 28px 20px;
     width: 100%;
     box-sizing: border-box;
   }
