@@ -14,7 +14,6 @@ const SERVICES_DATA = {
     title: 'Termite Control & Wood Shield Treatment',
     category: 'Wood & Structural Defense',
     icon: 'fa-shield-virus',
-    price: 'From ₹1,499',
     warranty: '1 to 5-Year Renewable Guarantee',
     description: 'Our DRILL-FILL-SEAL method injects eco-friendly termiticide at 12-inch intervals along perimeter walls and foundation pillars. This forms an impenetrable chemical barrier that eliminates existing subterranean colonies and prevents future invasions for years.',
     processSteps: [
@@ -29,7 +28,6 @@ const SERVICES_DATA = {
     title: 'Advanced Cockroach Herbal Gel Baiting',
     category: 'Kitchen & Sanitation Defense',
     icon: 'fa-bug',
-    price: 'From ₹799',
     warranty: '90-Day Money-Back Warranty',
     description: 'We deploy an innovative domino-effect baiting protocol. German and American cockroaches consume our proprietary attractant gel, return to their nests, and spread the lethal active agent throughout the entire population, eliminating hidden egg sacs and nymphs.',
     processSteps: [
@@ -44,7 +42,6 @@ const SERVICES_DATA = {
     title: 'Rodent & Rat Proofing & Exclusion',
     category: 'Structural Rodent Management',
     icon: 'fa-shield-halved',
-    price: 'From ₹999',
     warranty: '180-Day Defense Warranty',
     description: 'A comprehensive 3-tier exclusion strategy: entry hole physical proofing with chew-resistant steel mesh, lockable tamper-proof exterior bait stations, and interior ultrasonic sound repellers to eliminate rats without foul odors.',
     processSteps: [
@@ -59,7 +56,6 @@ const SERVICES_DATA = {
     title: 'Bed Bug Thermal Steam & Contact Mist Treatment',
     category: 'Intensive Sleep Sanitation',
     icon: 'fa-virus-slash',
-    price: 'From ₹1,299',
     warranty: '90-Day Free Callback Warranty',
     description: 'Our intensive 2-stage bed bug treatment combines 180°C dry superheated steam to instantly kill heat-sensitive bed bug eggs with micro-encapsulated synthetic pyrethroid mist for deep mattress and headboard penetration.',
     processSteps: [
@@ -74,7 +70,6 @@ const SERVICES_DATA = {
     title: 'Mosquito & Vector Defense Program',
     category: 'Outdoor & Vector Control',
     icon: 'fa-mosquito',
-    price: 'From ₹699',
     warranty: 'Seasonal Barrier Guarantee',
     description: 'Target mosquitoes at both larval and adult stages. We treat stagnant water spots with eco-larvicides and apply ultra-low volume (ULV) cold misting to garden foliage, balcony corners, and drainage perimeter.',
     processSteps: [
@@ -89,7 +84,6 @@ const SERVICES_DATA = {
     title: 'Comprehensive General Pest Maintenance',
     category: 'Quarterly Home Shield',
     icon: 'fa-spray-can-sparkles',
-    price: 'From ₹899',
     warranty: 'Quarterly Re-visit Coverage',
     description: 'An all-in-one preventative defense covering ants, spiders, silverfish, lizards, crickets, and centipedes across all living areas, bathrooms, balconies, and duct shafts.',
     processSteps: [
@@ -104,7 +98,6 @@ const SERVICES_DATA = {
     title: 'Commercial & Restaurant Pest Audit & Compliance',
     category: 'FSSAI & Health Board Compliance',
     icon: 'fa-store',
-    price: 'Custom Enterprise Quote',
     warranty: '100% Audit-Passing Guarantee',
     description: 'Specialized pest defense designed for food handling facilities, hospitality, warehouses, and IT offices. We provide barcode-scanned station tracking, trend analysis, and official documentation required by health safety boards.',
     processSteps: [
@@ -119,7 +112,6 @@ const SERVICES_DATA = {
     title: 'Wood Borer & Timber Preservation',
     category: 'Valuable Furniture Protection',
     icon: 'fa-tree',
-    price: 'From ₹1,199',
     warranty: '2-Year Timber Guarantee',
     description: 'Powder post beetles and wood borers destroy furniture from the inside out. We use precision needle syringe injection to pump specialized petroleum-based wood preservatives directly into flight pinholes.',
     processSteps: [
@@ -140,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileDrawer();
   initScrollspy();
   initStatsCounter();
-  initCostCalculator();
   initServiceFilter();
   initFaqAccordion();
   initContactForm();
@@ -266,169 +257,7 @@ function initStatsCounter() {
 }
 
 // ==========================================================================
-// 7. INTERACTIVE PEST COST CALCULATOR
-// ==========================================================================
-function initCostCalculator() {
-  const form = document.getElementById('priceCalculatorForm');
-  if (!form) return;
-
-  const propertyInputs = form.querySelectorAll('input[name="propertyType"]');
-  const pestSelect = document.getElementById('calcPestType');
-  const severityRange = document.getElementById('severityRange');
-  const priceDisplay = document.getElementById('calculatedPrice');
-  const warrantyText = document.getElementById('calcWarrantyText');
-
-  const severityLabels = {
-    1: document.getElementById('severityLow'),
-    2: document.getElementById('severityMed'),
-    3: document.getElementById('severityHigh')
-  };
-
-  // Base costs in INR (1 BHK, Mild)
-  const basePestRates = {
-    cockroach: { base: 799, warranty: '90-Day Free Re-visit Guarantee' },
-    termite: { base: 1499, warranty: '1 to 5-Year Renewable Warranty' },
-    bedbug: { base: 1299, warranty: '90-Day Free Re-treatment Warranty' },
-    rodent: { base: 999, warranty: '180-Day Defense Warranty' },
-    mosquito: { base: 699, warranty: '60-Day Seasonal Protection' },
-    general: { base: 899, warranty: 'Quarterly Maintenance Coverage' }
-  };
-
-  // Property multipliers
-  const propertyMultipliers = {
-    '1bhk': 1.0,
-    '2bhk': 1.35,
-    '3bhk': 1.7,
-    'villa': 2.3,
-    'commercial': 2.8
-  };
-
-  // Severity multipliers
-  const severityMultipliers = {
-    1: 1.0,
-    2: 1.25,
-    3: 1.55
-  };
-
-  function calculate() {
-    let selectedProp = '1bhk';
-    propertyInputs.forEach(input => {
-      if (input.checked) selectedProp = input.value;
-    });
-
-    const selectedPest = pestSelect.value;
-    const severityVal = parseInt(severityRange.value, 10);
-
-    // Update severity label styling
-    Object.keys(severityLabels).forEach(key => {
-      if (severityLabels[key]) {
-        severityLabels[key].classList.toggle('active', parseInt(key, 10) === severityVal);
-      }
-    });
-
-    const pestInfo = basePestRates[selectedPest] || { base: 799, warranty: '90-Day Guarantee' };
-    const propMult = propertyMultipliers[selectedProp] || 1.0;
-    const sevMult = severityMultipliers[severityVal] || 1.0;
-
-    const estimatedTotal = Math.round(pestInfo.base * propMult * sevMult);
-
-    if (priceDisplay) {
-      priceDisplay.textContent = estimatedTotal.toLocaleString('en-IN');
-    }
-    if (warrantyText) {
-      warrantyText.innerHTML = `<i class="fa-solid fa-shield-check"></i> ${pestInfo.warranty}`;
-    }
-  }
-
-  // Event Listeners
-  propertyInputs.forEach(input => input.addEventListener('change', calculate));
-  pestSelect.addEventListener('change', calculate);
-  severityRange.addEventListener('input', calculate);
-
-  // Initial calculation
-  calculate();
-}
-
-/**
- * Transfers calculated quote info directly to Contact form and smooth scrolls
- */
-function bookCalculatedQuote() {
-  const propertyInput = document.querySelector('input[name="propertyType"]:checked');
-  const pestSelect = document.getElementById('calcPestType');
-  const priceDisplay = document.getElementById('calculatedPrice');
-
-  const propertyNames = {
-    '1bhk': '1 BHK / Studio Apartment',
-    '2bhk': '2 BHK Apartment',
-    '3bhk': '3+ BHK Independent Home',
-    'villa': 'Independent Villa / Estate',
-    'commercial': 'Commercial Office / Restaurant'
-  };
-
-  const serviceMap = {
-    'cockroach': 'Cockroach Control',
-    'termite': 'Termite Control',
-    'bedbug': 'Bed Bug Treatment',
-    'rodent': 'Rodent Control',
-    'mosquito': 'Mosquito Defense',
-    'general': 'General Pest Control'
-  };
-
-  const propVal = propertyInput ? propertyInput.value : '1bhk';
-  const pestVal = pestSelect ? pestSelect.value : 'cockroach';
-  const price = priceDisplay ? priceDisplay.textContent : '799';
-
-  // Populate booking form
-  const formService = document.getElementById('serviceNeeded');
-  const formProp = document.getElementById('propertySize');
-  const formDesc = document.getElementById('problemDescription');
-
-  if (formService && serviceMap[pestVal]) {
-    formService.value = serviceMap[pestVal];
-  }
-  if (formProp && propertyNames[propVal]) {
-    formProp.value = propertyNames[propVal];
-  }
-  if (formDesc) {
-    formDesc.value = `Estimated Instant Quote: ₹${price} for ${propertyNames[propVal]}.`;
-  }
-
-  // Smooth scroll to contact
-  const contactSection = document.getElementById('contact');
-  if (contactSection) {
-    contactSection.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  showToast('Quote Applied!', `Locked estimate: ₹${price}. Please provide your contact info to confirm.`);
-}
-
-/**
- * Sends calculated quote directly to WhatsApp (9887147882)
- */
-function sendCalculatedQuoteToWhatsApp() {
-  const propertyInput = document.querySelector('input[name="propertyType"]:checked');
-  const pestSelect = document.getElementById('calcPestType');
-  const priceDisplay = document.getElementById('calculatedPrice');
-
-  const propertyNames = {
-    '1bhk': '1 BHK / Studio',
-    '2bhk': '2 BHK Flat',
-    '3bhk': '3+ BHK Home',
-    'villa': 'Independent Villa',
-    'commercial': 'Commercial Space'
-  };
-
-  const propName = propertyNames[propertyInput ? propertyInput.value : '1bhk'] || 'Home';
-  const pestName = pestSelect ? pestSelect.options[pestSelect.selectedIndex].text : 'Pest Control';
-  const price = priceDisplay ? priceDisplay.textContent : '799';
-
-  const message = `Hello Veer Pest Control Services, I calculated an estimate on your website:%0A- *Property:* ${propName}%0A- *Pest Issue:* ${pestName}%0A- *Estimated Price:* ₹${price}%0APlease let me know the earliest available slot for inspection.`;
-  
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
-}
-
-// ==========================================================================
-// 8. SERVICE FILTER TABS
+// 7. SERVICE FILTER TABS
 // ==========================================================================
 function initServiceFilter() {
   const tabs = document.querySelectorAll('#serviceFilterTabs .tab-btn');
@@ -503,7 +332,6 @@ function openServiceModal(serviceKey) {
 
     <div class="modal-footer-cta">
       <div>
-        <span class="service-price">Standard Pricing: <strong>${service.price}</strong></span>
         <div class="text-accent" style="font-size: 0.8rem; font-weight: 700;">
           <i class="fa-solid fa-award"></i> ${service.warranty}
         </div>
